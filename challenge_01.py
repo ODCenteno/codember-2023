@@ -9,27 +9,24 @@ def get_words():
             words.extend(line.strip().split(" "))
     return [word.lower() for word in words]
 
-def is_word_in_list(word):
-    return word in dict_counter
-
 def print_result():
     result = ""
-    for word in dict_counter:
+    for word, count in dict_counter.items():
         result += f'{word}{count}'
     print(result)
 
-def plus_one(word):
-    for word_dict in dict_counter:
-        word_dict[word] += 1
 
 def run():
+    global dict_counter
+    dict_counter = {}
+
     words = get_words()
 
     for word in words:
-        if is_word_in_list(word):
-            plus_one(word)
+        if word in dict_counter:
+            dict_counter[word] += 1
         else:
-            dict_counter.append({word: 1})
+            dict_counter[word] = 1
 
     print_result()
 
